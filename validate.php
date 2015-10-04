@@ -31,7 +31,7 @@ if($_POST['submit']=='Login'){
 		session_start();
 		while($details = mysql_fetch_array($sql)){
 			?>
-			<h5><?php echo "<strong>UserID</strong>: ".$details[1]."<br>";?></h5>
+			<h5><?php echo "<strong>UserID</strong>: ".$details[0]."<br>";?></h5>
 			<h5><?php echo "<strong>Name</strong>: ".$details[1]."<br>";?></h5>
 			<h5><?php echo "<strong>Username</strong>: ".$details[2]."<br>";?></h5>
 			<hr>
