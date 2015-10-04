@@ -11,14 +11,14 @@
 <hr>
 <?php
 require_once('connect.php');
-
-
+error_reporting(0);
+$msg = "";
 if($_POST['submit']=='Login'){
 	//this line can cause sql injection
-	$username = $_POST['username'];
+	//$username = $_POST['username'];
 
 	// this is to prevent sql injection
-	//$username = mysql_real_escape_string($_POST['username']);
+	$username = mysql_real_escape_string($_POST['username']);
 	$password = hash('SHA512',$_POST['password']);
 
 	$query = "SELECT * FROM users WHERE password='$password' AND username='$username'";
@@ -46,7 +46,8 @@ if($_POST['submit']=='Login'){
 		}
 	}
 	else{
-		echo "Please use valid credentials";
+			$msg = "Invalid User Details";
+			header("Location: index.php?msg=$msg");
 	}
 }
 if($_POST['submit']=='Register'){
@@ -59,7 +60,7 @@ if($_POST['submit']=='Register'){
 	header("Location: index.php?msg=$msg");
 }
 
-?>
+?><br>
 <a href="logout.php" class="button info">Logout and Try Again</a>
 </div>
 </body>
